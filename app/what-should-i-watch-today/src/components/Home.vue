@@ -7,8 +7,11 @@
 				</section>
 				<section class="column">
 					<h1>{{ movie.name }}</h1>
+					<h2>hello</h2>
 					<p>{{ movie.description }}</p>
-					<button class="button-large">Next</button>
+					<button @click="getMovies" class="button-large">
+						Next
+					</button>
 				</section>
 			</div>
 			<footer>
@@ -19,6 +22,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
 	name: 'Home',
 	props: {
@@ -35,6 +39,14 @@ export default {
 			},
 			attribution:
 				'https://www.themoviedb.org/assets/2/v4/logos/powered-by-rectangle-green-dcada16968ed648d5eb3b36bbcfdd8cdf804f723dcca775c8f2bf4cea025aad6.svg'
+		}
+	},
+	methods: {
+		getMovies: function() {
+			console.log('Getting movies')
+			axios.get('localhost:3000/get-movies').then(response => {
+				console.log(response)
+			})
 		}
 	}
 }
